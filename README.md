@@ -13,7 +13,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.vansencool:SchedulerUtils:1.0.2'
+    implementation 'com.github.vansencool:SchedulerUtils:1.0.0'
 }
 ```
 
@@ -30,6 +30,11 @@ dependencies {
 <dependency>
     <groupId>com.github.vansencool</groupId>
     <artifactId>SchedulerUtils</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.0</version>
 </dependency>
 ```
+
+**Be sure to shade the library!**
+
+# How to use it?
+You can view on how to use it here: https://github.com/vansencool/SchedulerUtils/wiki
