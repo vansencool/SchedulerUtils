@@ -1,9 +1,8 @@
 package dev.vansen.scheduleutils.utils;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import dev.vansen.scheduleutils.SchedulerUtils;
+import dev.vansen.scheduleutils.SchedulerHolder;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 
@@ -137,13 +136,13 @@ public final class Repeater {
         BukkitTask bukkitTask;
         if (repeatsForever) {
             bukkitTask = async ?
-                    Bukkit.getScheduler().runTaskTimerAsynchronously(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), conditionalTask, delay, period) :
-                    Bukkit.getScheduler().runTaskTimer(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), conditionalTask, delay, period);
+                    Bukkit.getScheduler().runTaskTimerAsynchronously(SchedulerHolder.get(), conditionalTask, delay, period) :
+                    Bukkit.getScheduler().runTaskTimer(SchedulerHolder.get(), conditionalTask, delay, period);
         } else {
             long repetitions = totalDuration / period;
             bukkitTask = async ?
-                    Bukkit.getScheduler().runTaskTimerAsynchronously(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), new RepeatingTask(conditionalTask, repetitions), delay, period) :
-                    Bukkit.getScheduler().runTaskTimer(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), new RepeatingTask(conditionalTask, repetitions), delay, period);
+                    Bukkit.getScheduler().runTaskTimerAsynchronously(SchedulerHolder.get(), new RepeatingTask(conditionalTask, repetitions), delay, period) :
+                    Bukkit.getScheduler().runTaskTimer(SchedulerHolder.get(), new RepeatingTask(conditionalTask, repetitions), delay, period);
         }
 
         Task resultTask = new Task(bukkitTask, period);

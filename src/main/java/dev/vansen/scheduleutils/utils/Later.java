@@ -1,9 +1,8 @@
 package dev.vansen.scheduleutils.utils;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import dev.vansen.scheduleutils.SchedulerUtils;
+import dev.vansen.scheduleutils.SchedulerHolder;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 
@@ -94,8 +93,8 @@ public final class Later {
         };
 
         BukkitTask bukkitTask = async ?
-                Bukkit.getScheduler().runTaskLaterAsynchronously(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), conditionalTask, delay) :
-                Bukkit.getScheduler().runTaskLater(JavaPlugin.getProvidingPlugin(SchedulerUtils.class), conditionalTask, delay);
+                Bukkit.getScheduler().runTaskLaterAsynchronously(SchedulerHolder.get(), conditionalTask, delay) :
+                Bukkit.getScheduler().runTaskLater(SchedulerHolder.get(), conditionalTask, delay);
 
         Task resultTask = new Task(bukkitTask, delay);
 
