@@ -1,0 +1,53 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id 'maven-publish'
+}
+
+group = 'dev.vansen'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT'
+    compileOnly 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+}
+
+tasks.jar {
+    archiveBaseName = 'SchedulerUtils'
+    archiveVersion = version
+
+    exclude 'kotlin/**'
+    exclude 'org/intellij/**'
+    exclude 'org/jetbrains/**'
+}
+
+tasks.withType(Javadoc) {
+    source = sourceSets.main.allJava
+}
+
+tasks.register('sourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+tasks.register('javadocJar', Jar) {
+    archiveClassifier.set('javadoc')
+    from tasks.javadoc
+    dependsOn tasks.javadoc
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact tasks.sourcesJar
+            artifact tasks.javadocJar
+        }
+    }
+}
