@@ -14,6 +14,11 @@ public final class Runner {
     private final boolean async;
     private Runnable task;
 
+    /**
+     * Constructs a new Runner instance.
+     *
+     * @param async Whether the task should be executed asynchronously.
+     */
     public Runner(boolean async) {
         this.async = async;
     }

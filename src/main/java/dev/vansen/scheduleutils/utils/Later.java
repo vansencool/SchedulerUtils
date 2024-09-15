@@ -23,6 +23,11 @@ public final class Later {
     private long delay;
     private String uniqueId;
 
+    /**
+     * Constructs a new Later instance.
+     *
+     * @param async Whether the task should be executed asynchronously.
+     */
     public Later(boolean async) {
         this.async = async;
     }

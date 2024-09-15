@@ -26,6 +26,11 @@ public final class Repeater {
     private boolean repeatsForever;
     private String uniqueId;
 
+    /**
+     * Constructs a new Repeater instance.
+     *
+     * @param async Whether the task should be executed asynchronously.
+     */
     public Repeater(boolean async) {
         this.async = async;
         this.repeatsForever = false;

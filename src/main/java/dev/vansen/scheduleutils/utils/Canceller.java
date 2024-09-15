@@ -9,6 +9,11 @@ import org.jetbrains.annotations.NotNull;
 public final class Canceller {
     private final Boolean async;
 
+    /**
+     * Constructs a new Canceller instance.
+     *
+     * @param async Whether the task should be executed asynchronously.
+     */
     public Canceller(boolean async) {
         this.async = async;
     }

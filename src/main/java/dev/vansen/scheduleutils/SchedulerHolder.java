@@ -20,7 +20,8 @@ public class SchedulerHolder {
      * Sets the plugin instance that is used to schedule tasks.
      * <p>
      * This must be called before any tasks are scheduled.
-     * <p>
+     *
+     * @param plugin The plugin instance that is used to schedule tasks.
      */
     public static void set(@NotNull JavaPlugin plugin) {
         if (instance != null) {
