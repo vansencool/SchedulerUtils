@@ -26,28 +26,10 @@ tasks.jar {
     exclude 'org/jetbrains/**'
 }
 
-tasks.withType(Javadoc) {
-    source = sourceSets.main.allJava
-}
-
-tasks.register('sourcesJar', Jar) {
-    archiveClassifier.set('sources')
-    from sourceSets.main.allSource
-}
-
-tasks.register('javadocJar', Jar) {
-    archiveClassifier.set('javadoc')
-    from tasks.javadoc
-    dependsOn tasks.javadoc
-}
-
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-
-            artifact tasks.sourcesJar
-            artifact tasks.javadocJar
         }
     }
 }
