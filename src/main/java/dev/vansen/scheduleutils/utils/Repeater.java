@@ -85,14 +85,13 @@ public final class Repeater {
     }
 
     /**
-     * Sets whether the task should repeat indefinitely.
+     * Sets the task should repeat indefinitely.
      *
-     * @param repeatsForever If true, the task repeats indefinitely.
      * @return The current Repeater instance.
      */
     @CanIgnoreReturnValue
-    public Repeater repeatsForever(boolean repeatsForever) {
-        this.repeatsForever = repeatsForever;
+    public Repeater repeatsForever() {
+        this.repeatsForever = true;
         return this;
     }
 
@@ -171,6 +170,34 @@ public final class Repeater {
         Map<String, Task> taskMap = async ? asyncTasks : syncTasks;
         taskMap.values().forEach(Task::cancel);
         taskMap.clear();
+    }
+
+    /**
+     * Checks if a task with the specified unique ID exists.
+     *
+     * @param uniqueId The unique ID of the task to check.
+     * @return True if the task exists, false otherwise.
+     */
+    public static boolean cancelledOrExists(@NotNull String uniqueId) {
+        return asyncTasks.containsKey(uniqueId) || syncTasks.containsKey(uniqueId);
+    }
+
+    /**
+     * Gets the async tasks.
+     *
+     * @return The async tasks.
+     */
+    public static Map<String, Task> getAsyncTasks() {
+        return asyncTasks;
+    }
+
+    /**
+     * Gets the sync tasks.
+     *
+     * @return The sync tasks.
+     */
+    public static Map<String, Task> getTasks() {
+        return syncTasks;
     }
 
     /**

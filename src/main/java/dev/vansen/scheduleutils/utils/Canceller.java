@@ -40,4 +40,14 @@ public final class Canceller {
         Repeater.cancelById(uniqueId);
         Later.cancelById(uniqueId);
     }
+
+    /**
+     * Checks if a task with the specified unique ID exists.
+     *
+     * @param uniqueId The unique ID of the task to check.
+     * @return True if the task exists, false otherwise.
+     */
+    public boolean cancelledOrExists(@NotNull String uniqueId) {
+        return Repeater.cancelledOrExists(uniqueId) || Later.cancelledOrExists(uniqueId);
+    }
 }

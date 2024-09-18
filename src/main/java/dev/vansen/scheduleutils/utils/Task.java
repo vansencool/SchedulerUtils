@@ -43,4 +43,13 @@ public final class Task {
     public boolean isRepeating() {
         return repeatPeriodMillis > 0;
     }
+
+    /**
+     * Checks if the task is cancelled.
+     *
+     * @return True if the task is cancelled; false otherwise.
+     */
+    public boolean isCancelled() {
+        return bukkitTask.isCancelled();
+    }
 }

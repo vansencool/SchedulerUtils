@@ -62,4 +62,13 @@ public final class SchedulerUtils {
     public Canceller canceller() {
         return new Canceller(async);
     }
+
+    /**
+     * Creates a Canceller for task cancellation, only usable for sync tasks and tasks with unique ids.
+     *
+     * @return A new Canceller instance.
+     */
+    public static Canceller cancel() {
+        return new Canceller(false);
+    }
 }

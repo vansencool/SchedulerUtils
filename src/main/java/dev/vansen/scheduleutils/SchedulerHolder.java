@@ -24,9 +24,6 @@ public class SchedulerHolder {
      * @param plugin The plugin instance that is used to schedule tasks.
      */
     public static void set(@NotNull JavaPlugin plugin) {
-        if (instance != null) {
-            throw new IllegalStateException("Plugin instance already set!");
-        }
         SchedulerHolder.instance = plugin;
     }
 
@@ -39,11 +36,10 @@ public class SchedulerHolder {
      * The plugin instance is used to schedule tasks, and it is used to cancel tasks.
      *
      * @return the plugin instance that is used to schedule tasks.
+     * @throws IllegalStateException if the plugin instance has not been set.
      */
     public static @NotNull JavaPlugin get() {
-        if (instance == null) {
-            throw new IllegalStateException("Plugin instance not set!");
-        }
+        if (instance == null) throw new IllegalStateException("Plugin instance not set!");
         return instance;
     }
 }
