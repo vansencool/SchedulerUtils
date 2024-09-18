@@ -131,7 +131,7 @@ public final class Later {
      * @param uniqueId The unique ID of the task to check.
      * @return True if the task exists, false otherwise.
      */
-    public static boolean cancelledOrExists(@NotNull String uniqueId) {
+    public static boolean exists(@NotNull String uniqueId) {
         return asyncTasks.containsKey(uniqueId) || syncTasks.containsKey(uniqueId);
     }
 
